@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -24,18 +25,15 @@ class _LoginPageState extends State<LoginPage> {
   );
 
   try {
-    print('Sending POST request to: $url');
-
     final response = await http.post(url);
-
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
 
     if (response.statusCode == 200) {
       final token = response.body;
 
       if (token.startsWith('Bearer ')) {
-        // You can store the token if needed using shared_preferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token); // Store token
+
         Navigator.pushReplacementNamed(context, '/home');
       } else {
         _showErrorSnackBar('Login failed: Invalid token format');
@@ -44,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
       _showErrorSnackBar('Invalid credentials');
     }
   } catch (e) {
-    print('Error occurred: $e');
     _showErrorSnackBar('Something went wrong. Please try again later.');
   }
 }

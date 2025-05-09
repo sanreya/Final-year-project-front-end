@@ -7,7 +7,7 @@ class reminder extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text("reminder page"),)
+        title: const Text("reminder page"),)
     );
   }
 }

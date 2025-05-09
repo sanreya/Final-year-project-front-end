@@ -7,7 +7,7 @@ class disease extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text("disease page"),),
+        title: const Text("disease page"),),
     );
   }
 }

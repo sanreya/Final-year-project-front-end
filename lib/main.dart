@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const LoginPage(),
       routes: {
-        '/login': (context) => LoginPage(),
+        '/login': (context) => const LoginPage(),
         '/home': (context) => const home(),
-        '/disease' : (context) => disease(),
-        '/diet' : (context) => diet(),
-        '/profile' : (context) => profile(),
-        '/reminder' : (context) => reminder(),
-        '/register' : (context) => RegisterPage(),
+        '/disease' : (context) => const disease(),
+        '/diet' : (context) => const Diet(),
+        '/profile' : (context) => const profile(),
+        '/reminder' : (context) => const reminder(),
+        '/register' : (context) => const RegisterPage(),
       }
     );
   }
