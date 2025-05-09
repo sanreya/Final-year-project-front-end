@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class reminder extends StatelessWidget{
-  const reminder({super.key});
+class ReminderPage extends StatelessWidget{
+  const ReminderPage({super.key});
 
   @override
   Widget build(BuildContext context){

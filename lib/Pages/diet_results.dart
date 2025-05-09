@@ -12,16 +12,16 @@ class DietResults extends StatelessWidget {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token') ?? '';
 
-    final url = Uri.parse("https://final-year-project-production-f1cb.up.railway.app/api/diet/$id");
+    final url = Uri.parse("https://192.168.29.177:8080/api/diet/$id");
 
     print("Sending GET request to: $url");
-    print("Authorization: Bearer $token");
+    print("Authorization: $token");
 
     try {
       final response = await http.get(
         url,
         headers: {
-          'Authorization': 'Bearer $token',
+          'Authorization': token,
           'Content-Type': 'application/json',
         },
       );

@@ -13,8 +13,7 @@ class Diet extends StatelessWidget {
   final token = prefs.getString('token') ?? '';
 
   final url = Uri.parse(
-    "https://final-year-project-production-f1cb.up.railway.app/api/diet/search"
-    "?cuisine=Indian&diet=vegetarian&intolerances=peanut,soy&number=5&apiKey=1682f92a122c48b195a8d4ea84643c6d",
+    "https://192.168.29.177:8080/api/diet/search?cuisine=Indian&diet=vegetarian&intolerances=peanut,soy&number=10&apiKey=1682f92a122c48b195a8d4ea84643c6d",
   );
 
   final response = await http.get(

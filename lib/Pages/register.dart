@@ -23,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future<void> register() async {
   final url = Uri.parse(
-    'https://final-year-project-production-f1cb.up.railway.app/api/auth/register',
+    'https://192.168.29.177:8080/api/auth/register',
   );
 
   final Map<String, dynamic> requestBody = {

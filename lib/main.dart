@@ -6,29 +6,35 @@ import 'package:health/Pages/profile.dart';
 import 'package:health/Pages/diet.dart';
 import 'package:health/Pages/login.dart';
 import 'package:health/Pages/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Check if user is logged in
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token');
+
+  runApp(MyApp(isLoggedIn: token != null));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isLoggedIn;
+  const MyApp({super.key, required this.isLoggedIn});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: isLoggedIn ? const home() : const LoginPage(),
       routes: {
         '/login': (context) => const LoginPage(),
         '/home': (context) => const home(),
-        '/disease' : (context) => const disease(),
-        '/diet' : (context) => const Diet(),
-        '/profile' : (context) => const profile(),
-        '/reminder' : (context) => const reminder(),
-        '/register' : (context) => const RegisterPage(),
-      }
+        '/disease': (context) => const disease(),
+        '/diet': (context) => const Diet(),
+        '/profile': (context) => const Profile(),
+        '/reminder': (context) => const ReminderPage(),
+        '/register': (context) => const RegisterPage(),
+      },
     );
   }
 }

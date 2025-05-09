@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final password = passwordController.text.trim();
 
   final url = Uri.parse(
-    'https://final-year-project-production-f1cb.up.railway.app/api/auth/login'
+    'https://192.168.29.177:8080/api/auth/login'
     '?email=$email&password=$password',
   );
 
