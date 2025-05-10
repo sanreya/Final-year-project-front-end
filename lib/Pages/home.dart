@@ -6,6 +6,8 @@ import 'disease.dart';
 import 'diet.dart';
 import 'reminder.dart';
 import 'profile.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart'; // Import flutter_svg
 
 class home extends StatefulWidget {
   const home({super.key});
@@ -46,7 +48,8 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar:  _selectedIndex == 0
+          ? AppBar(
         title: Text(_titles[_selectedIndex]),
         actions: [
           IconButton(
@@ -63,7 +66,7 @@ class _homeState extends State<home> {
             onPressed: _logout,
           )
         ],
-      ),
+      ): null,
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 300),
         child: _pages[_selectedIndex],
@@ -93,42 +96,149 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // ASK AI Card
         Expanded(
           child: Card(
             margin: EdgeInsets.all(12),
-            clipBehavior: Clip.hardEdge,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20), // Rounded corners
+            ),
+            elevation: 8, // Shadow effect
             child: InkWell(
               splashColor: Colors.blue.withAlpha(30),
               onTap: () {
                 Navigator.pushNamed(context, '/disease');
               },
-              child: Center(child: Text('ASK AI')),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.lightBlue.shade100,
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Left side text
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'ASK AI',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold, // Bold text
+                        ),
+                      ),
+                    ),
+                    // Right side SVG Icon
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SvgPicture.asset(
+                        'assets/ai_icon.svg', // Add your SVG asset here
+                        height: 40, // Adjust the icon size
+                        width: 40,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
+
+        // DIET RECOMMENDATION Card
         Expanded(
           child: Card(
             margin: EdgeInsets.all(12),
-            clipBehavior: Clip.hardEdge,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 8,
             child: InkWell(
               splashColor: Colors.green.withAlpha(30),
               onTap: () {
                 Navigator.pushNamed(context, '/diet');
               },
-              child: Center(child: Text('DIET RECOMMENDATION')),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.lightGreen.shade100,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Left side text
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'DIET',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    // Right side SVG Icon
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SvgPicture.asset(
+                        'assets/diet_icon.svg', // Add your SVG asset here
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
+
+        // FITNESS RECOMMENDATION Card
         Expanded(
           child: Card(
             margin: EdgeInsets.all(12),
-            clipBehavior: Clip.hardEdge,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 8,
             child: InkWell(
               splashColor: Colors.red.withAlpha(30),
               onTap: () {
-                Navigator.pushNamed(context, '/diet');
+                Navigator.pushNamed(context, '/fitness');
               },
-              child: Center(child: Text('FITNESS RECOMMENDATION')),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.pink.shade100,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // Left side text
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        'FITNESS',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    // Right side SVG Icon
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SvgPicture.asset(
+                        'assets/fitness_icon.svg', // Add your SVG asset here
+                        height: 40,
+                        width: 40,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
