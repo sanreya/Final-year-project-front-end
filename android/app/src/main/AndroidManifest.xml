@@ -36,6 +36,11 @@
          https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
 
          In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
+    <application
+        android:label="app_name"
+        android:icon="@mipmap/ic_launcher">
+        <service android:name="com.dexterous.flutterlocalnotifications.notifications.services.NotificationService" android:permission="android.permission.BIND_JOB_SERVICE" android:exported="true"/>
+    </application>
     <queries>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
